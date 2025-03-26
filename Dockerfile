@@ -8,6 +8,10 @@ RUN npm i
 COPY . .
 RUN npm run build
 
-FROM nginx:1-alpine
+FROM node:22-alpine
 
-COPY --from=builder /build/build /usr/share/nginx/html
+WORKDIR /app
+
+COPY --from=builder /build/build .
+
+ENTRYPOINT [ "node", "index.js" ]
