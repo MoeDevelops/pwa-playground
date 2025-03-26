@@ -1,0 +1,16 @@
+{
+  "plugins": ["prettier-plugin-svelte", "@trivago/prettier-plugin-sort-imports"],
+  "trailingComma": "all",
+  "printWidth": 100,
+  "semi": false,
+  "importOrder": ["^[@]", "^[$lib]", "^[./]"],
+  "importOrderSortSpecifiers": true,
+  "overrides": [
+    {
+      "files": "*.svelte",
+      "options": {
+        "parser": "svelte"
+      }
+    }
+  ]
+}
