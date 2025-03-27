@@ -4,6 +4,9 @@ on:
   release:
     types:
       - published
+  push:
+    branches:
+      - main
 
 jobs:
   publish:
@@ -21,9 +24,18 @@ jobs:
           username: ${{github.actor}}
           password: ${{secrets.GITHUB_TOKEN}}
       - name: Build & publish image
+        if: github.event_name == 'release'
         run: |
           export VERSION=$(sed 's/^.//' <<< ${{github.event.release.tag_name}})
           export REPO=$(sed 's/\(.*\)/\L\1/' <<< $GITHUB_REPOSITORY)
           docker build . -t ghcr.io/$REPO:latest -t ghcr.io/$REPO:$VERSION
           docker push ghcr.io/$REPO:latest
           docker push ghcr.io/$REPO:$VERSION
+      - name: Build & publish image
+        if: github.event_name == 'push'
+        run: |
+          export TIME=$(date +%s)
+          export REPO=$(sed 's/\(.*\)/\L\1/' <<< $GITHUB_REPOSITORY)
+          docker build . -t ghcr.io/$REPO:main -t ghcr.io/$REPO:$TIME
+          docker push ghcr.io/$REPO:main
+          docker push ghcr.io/$REPO:$TIME
