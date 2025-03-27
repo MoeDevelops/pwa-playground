@@ -4,5 +4,28 @@
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#000000"
+  "background_color": "#000000",
+  "screenshots": [
+    {
+      "src": "manifest/screenshot.png",
+      "sizes": "2106x1349",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "UI"
+    },
+    {
+      "src": "manifest/screenshot.png",
+      "sizes": "2106x1349",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "UI"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }
+  ]
 }
