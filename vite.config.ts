@@ -2,10 +2,12 @@ import { defineConfig } from "vite"
 import { sveltekit } from "@sveltejs/kit/vite"
 import tailwindcss from "@tailwindcss/vite"
 import { svelteTesting } from "@testing-library/svelte/vite"
-import { SvelteKitPWA } from "@vite-pwa/sveltekit"
 
 export default defineConfig({
-  plugins: [tailwindcss(), sveltekit(), SvelteKitPWA()],
+  plugins: [tailwindcss(), sveltekit()],
+  define: {
+    "process.env.NODE_ENV": '"production"',
+  },
   test: {
     workspace: [
       {

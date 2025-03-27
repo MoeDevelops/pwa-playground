@@ -6,7 +6,7 @@
   let { children } = $props()
 </script>
 
-<div class="flex flex-col h-screen justify-between text-white bg-black">
+<div class="flex flex-col h-screen justify-between dark:text-white dark:bg-black">
   <Header />
   <main class="mb-auto">
     {@render children()}
