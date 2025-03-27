@@ -7,9 +7,13 @@
 </script>
 
 <div class="flex flex-col h-screen justify-between dark:text-white dark:bg-black">
-  <Header />
-  <main class="mb-auto">
+  <header class="p-2 bg-gray-200 dark:bg-gray-900">
+    <Header />
+  </header>
+  <main class="p-2 mb-auto">
     {@render children()}
   </main>
-  <Footer />
+  <footer class="p-2 bg-gray-200 dark:bg-gray-900">
+    <Footer />
+  </footer>
 </div>
