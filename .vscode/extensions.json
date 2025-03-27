@@ -1,9 +1,9 @@
 {
-    "recommendations": [
-        "firefox-devtools.vscode-firefox-debug",
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
-        "bradlc.vscode-tailwindcss",
-        "svelte.svelte-vscode"
-    ]
+  "recommendations": [
+    "firefox-devtools.vscode-firefox-debug",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "svelte.svelte-vscode"
+  ]
 }
