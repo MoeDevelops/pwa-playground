@@ -1,20 +1,23 @@
 <script lang="ts">
   import { browser } from "$app/environment"
 
-  class InstallEvent extends Event {
-    prompt: () => Promise<void> = () => new Promise(() => {})
+  interface BeforeInstallPromptEvent extends Event {
+    readonly platforms: Array<string>
+    readonly userChoice: Promise<{
+      outcome: "accepted" | "dismissed"
+      platform: string
+    }>
+    prompt(): Promise<void>
   }
 
-  let installPrompt: InstallEvent | null = null
+  let installPrompt: BeforeInstallPromptEvent | null = null
   let showInstall = $state(false)
 
   if (browser) {
     window.addEventListener("beforeinstallprompt", (event) => {
-      if (event instanceof InstallEvent) {
-        event.preventDefault()
-        installPrompt = event
-        showInstall = true
-      }
+      event.preventDefault()
+      installPrompt = event as BeforeInstallPromptEvent
+      showInstall = true
     })
   }
 
