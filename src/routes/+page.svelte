@@ -1,28 +1,14 @@
 <script lang="ts">
   import { Play } from "@lucide/svelte"
-  import { browser } from "$app/environment"
+  import InstallButton from "$lib/components/InstallButton.svelte"
 
   let name = $state("")
   let greeting = $state("Hello!")
-  let installPrompt: any = null
-  let showInstall = $state(false)
-
-  if (browser) {
-    window.addEventListener("beforeinstallprompt", (event) => {
-      event.preventDefault()
-      installPrompt = event
-      showInstall = true
-    })
-  }
 
   async function getHello() {
     const response = await fetch(`/api?name=${name}`)
     name = ""
     greeting = await response.text()
-  }
-
-  async function install() {
-    await installPrompt?.prompt()
   }
 </script>
 
@@ -33,4 +19,4 @@
     <Play />
   </button>
 </form>
-<button class="border-2 p-1 cursor-pointer" onclick={install} hidden={!showInstall}>Install</button>
+<InstallButton />
