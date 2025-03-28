@@ -8,6 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "preview:build": "npm run build && npm run preview",
+    "prod": "node build/index.js",
+    "prod:build": "npm run build && npm run prod",
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
