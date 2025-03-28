@@ -1,5 +1,9 @@
 {
-  "plugins": ["prettier-plugin-svelte", "@trivago/prettier-plugin-sort-imports"],
+  "plugins": [
+    "prettier-plugin-svelte",
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-sql"
+  ],
   "trailingComma": "all",
   "printWidth": 100,
   "semi": false,

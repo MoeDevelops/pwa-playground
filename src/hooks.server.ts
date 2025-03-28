@@ -1,3 +1,3 @@
-import { setup } from "$lib/sql/sqlClient"
+// import { setup } from "$lib/sql/sqlClient"
 
-setup()
+// setup()
