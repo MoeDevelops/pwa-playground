@@ -23,11 +23,6 @@
   ],
   "icons": [
     {
-      "src": "/icons/hammer.svg",
-      "sizes": "24x24",
-      "type": "image/svg"
-    },
-    {
       "src": "/icons/hammer-144.png",
       "sizes": "144x144",
       "type": "image/png"
