@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Play } from "@lucide/svelte"
   import InstallButton from "$lib/components/InstallButton.svelte"
+  import NavBar from "$lib/components/NavBar.svelte"
 
   let name = $state("")
   let greeting = $state("Hello!")
@@ -11,6 +12,8 @@
     greeting = await response.text()
   }
 </script>
+
+<NavBar />
 
 <h1 class="text-6xl">{greeting}</h1>
 <form class="my-3 flex">
