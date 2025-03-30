@@ -13,8 +13,6 @@
   }
 </script>
 
-<NavBar />
-
 <h1 class="text-6xl">{greeting}</h1>
 <form class="my-3 flex">
   <input class="border-2 p-1" placeholder="Name" type="text" bind:value={name} />

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Footer from "$lib/components/Footer.svelte"
   import Header from "$lib/components/Header.svelte"
+  import NavBar from "$lib/components/NavBar.svelte"
   import "../app.css"
 
   let { children } = $props()
@@ -14,6 +14,6 @@
     {@render children()}
   </main>
   <footer class="p-2 bg-gray-200 dark:bg-gray-900">
-    <Footer />
+    <NavBar />
   </footer>
 </div>
