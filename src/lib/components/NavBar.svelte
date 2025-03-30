@@ -14,17 +14,14 @@
   }
 </script>
 
-<nav class="flex justify-evenly">
+<nav class="flex flex-row justify-around my-1">
   {#each elements as element (element.link)}
-    <a href={element.link}>
-      <div
-        class="flex p-2 m-2 w-max flex-col flex-wrap items-center {isActive(element)
-          ? 'font-extrabold'
-          : ''}"
-      >
-        <svelte:component this={element.icon} class="" />
-        {element.display}
-      </div>
+    <a
+      href={element.link}
+      class="flex flex-col flex-wrap items-center {isActive(element) ? 'font-extrabold' : ''}"
+    >
+      <svelte:component this={element.icon} class="" />
+      {element.display}
     </a>
   {/each}
 </nav>
