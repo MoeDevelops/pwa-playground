@@ -14,4 +14,6 @@ WORKDIR /app
 
 COPY --from=builder /build/build .
 
+RUN npm i
+
 ENTRYPOINT [ "node", "index.js" ]
