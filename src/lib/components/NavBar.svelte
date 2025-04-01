@@ -18,7 +18,7 @@
   {#each elements as element (element.link)}
     <a
       href={element.link}
-      class="flex flex-col flex-wrap items-center {isActive(element) ? 'font-extrabold' : ''}"
+      class="flex flex-col items-center {isActive(element) ? 'font-extrabold' : ''}"
     >
       <svelte:component this={element.icon} class="" />
       {element.display}
