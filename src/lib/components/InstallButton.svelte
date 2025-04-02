@@ -26,4 +26,4 @@
   }
 </script>
 
-<button class="border-2 p-1 cursor-pointer" onclick={install} hidden={!showInstall}>Install</button>
+<button class="cursor-pointer border-2 p-1" onclick={install} hidden={!showInstall}>Install</button>

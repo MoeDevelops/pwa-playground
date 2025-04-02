@@ -6,14 +6,14 @@
   let { children } = $props()
 </script>
 
-<div class="flex flex-col h-screen justify-between dark:text-white dark:bg-black">
-  <header class="p-2 bg-gray-200 dark:bg-gray-900">
+<div class="flex h-screen flex-col justify-between dark:bg-black dark:text-white">
+  <header class="bg-gray-200 p-2 dark:bg-gray-900">
     <Header />
   </header>
-  <main class="p-2 mb-auto">
+  <main class="mb-auto p-2">
     {@render children()}
   </main>
-  <footer class="p-2 bg-gray-200 dark:bg-gray-900">
+  <footer class="bg-gray-200 p-2 dark:bg-gray-900">
     <NavBar />
   </footer>
 </div>

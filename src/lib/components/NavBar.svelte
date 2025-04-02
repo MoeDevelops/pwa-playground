@@ -14,7 +14,7 @@
   }
 </script>
 
-<nav class="flex flex-row justify-around my-1">
+<nav class="my-1 flex flex-row justify-around">
   {#each elements as element (element.link)}
     <a
       href={element.link}

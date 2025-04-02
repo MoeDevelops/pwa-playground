@@ -1,5 +1,4 @@
 node_modules
-pwa-playground.db
 
 # Output
 .output
@@ -22,3 +21,6 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Custom
+data/

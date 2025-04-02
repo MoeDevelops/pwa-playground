@@ -1,23 +1,34 @@
 <script lang="ts">
-  import { Play } from "@lucide/svelte"
+  import { browser } from "$app/environment"
+  import type { User } from "$lib"
   import InstallButton from "$lib/components/InstallButton.svelte"
-  import NavBar from "$lib/components/NavBar.svelte"
 
-  let name = $state("")
-  let greeting = $state("Hello!")
+  let greeting = $state("")
 
-  async function getHello() {
-    const response = await fetch(`/api?name=${name}`)
-    name = ""
-    greeting = await response.text()
+  if (browser) {
+    setGreeting()
+    fetchUserData()
+  }
+
+  function setGreeting() {
+    const username = localStorage.getItem("username")
+    greeting = username ? `Hello, ${username}!` : "Hello!"
+  }
+
+  async function fetchUserData() {
+    const response = await fetch("/api/account/self")
+
+    if (response.status === 200) {
+      const userData: User = await response.json()
+      localStorage.setItem("username", userData.username)
+    } else {
+      localStorage.removeItem("username")
+    }
+
+    setGreeting()
   }
 </script>
 
 <h1 class="text-6xl">{greeting}</h1>
-<form class="my-3 flex">
-  <input class="border-2 p-1" placeholder="Name" type="text" bind:value={name} />
-  <button class="border-2 p-1" onclick={getHello} aria-label="Submit">
-    <Play />
-  </button>
-</form>
+
 <InstallButton />
