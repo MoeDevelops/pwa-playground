@@ -5,7 +5,7 @@
   let password = $state("")
 
   async function signup() {
-    const result = await fetch("/api/account", {
+    const result = await fetch("/api/account/signup", {
       method: "POST",
       body: JSON.stringify({
         username: username,

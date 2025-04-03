@@ -52,10 +52,14 @@ export async function POST(event) {
     userId: idBin,
   })
 
+  const time = 31536926 // 1 Year
+
+  console.log(time)
+
   return new Response("", {
     status: 201,
     headers: {
-      "Set-Cookie": `session_id=${sessionId}`,
+      "Set-Cookie": `session_id=${sessionId}; Path=/; Max-Age=${time}`,
     },
   })
 }

@@ -16,16 +16,18 @@
   }
 
   async function fetchUserData() {
-    const response = await fetch("/api/account/self")
+    try {
+      const response = await fetch("/api/account/self", {})
 
-    if (response.status === 200) {
-      const userData: User = await response.json()
-      localStorage.setItem("username", userData.username)
-    } else {
-      localStorage.removeItem("username")
+      if (response.status === 200) {
+        const userData: User = await response.json()
+        localStorage.setItem("username", userData.username)
+      } else {
+        localStorage.removeItem("username")
+      }
+    } finally {
+      setGreeting()
     }
-
-    setGreeting()
   }
 </script>
 

@@ -49,10 +49,12 @@ export async function POST(event) {
     userId: userData.id,
   })
 
+  const time = Date.now() + 31536926 // 1 Year in the future
+
   return new Response("", {
     status: 200,
     headers: {
-      "Set-Cookie": `session_id=${sessionId}`,
+      "Set-Cookie": `session_id=${sessionId}; Path=/; Max-Age=${time}`,
     },
   })
 }
