@@ -8,6 +8,13 @@
       "when": 1743630272399,
       "tag": "0000_silent_moondragon",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1743782000948,
+      "tag": "0001_bright_nocturne",
+      "breakpoints": true
     }
   ]
 }

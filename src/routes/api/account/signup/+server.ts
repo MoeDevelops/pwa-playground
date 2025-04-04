@@ -3,7 +3,7 @@ import { type ScryptOptions, randomBytes, scrypt } from "node:crypto"
 import { promisify } from "node:util"
 import { v7 } from "uuid"
 import { toBuffer } from "uuid-buffer"
-import { auth, db, tokens, users } from "$lib/db"
+import { db, passwords, tokens, users } from "$lib/db"
 
 export type CreateAccount = {
   username: string
@@ -36,7 +36,7 @@ export async function POST(event) {
     username: data.username,
   })
 
-  await db.insert(auth).values({
+  await db.insert(passwords).values({
     userId: idBin,
     password: hash,
     salt: salt,

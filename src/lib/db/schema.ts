@@ -9,7 +9,7 @@ export const users = sqliteTable("users", {
   username: text().notNull().unique(),
 })
 
-export const auth = sqliteTable("auth", {
+export const passwords = sqliteTable("passwords", {
   userId: blob({ mode: "buffer" })
     .primaryKey()
     .references(() => users.id),
