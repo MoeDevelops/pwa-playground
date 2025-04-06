@@ -5,7 +5,7 @@
   const elements = [
     { link: "/", display: "Home", icon: Home, isActive: false },
     { link: "/search", display: "Search", icon: Search, isActive: false },
-    { link: "/messages", display: "Messages", icon: Mail, isActive: false },
+    { link: "/chat", display: "Chat", icon: Mail, isActive: false },
     { link: "/account", display: "Account", icon: User, isActive: false },
   ]
 

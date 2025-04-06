@@ -54,8 +54,6 @@ export async function POST(event) {
 
   const time = 31536926 // 1 Year
 
-  console.log(time)
-
   return new Response("", {
     status: 201,
     headers: {
