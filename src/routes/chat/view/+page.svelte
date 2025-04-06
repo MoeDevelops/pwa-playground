@@ -25,7 +25,7 @@
 
     const netMessages: Message[] = await result.json()
 
-    messages.push(...netMessages)
+    messages = netMessages
   }
 
   async function sendMessage() {

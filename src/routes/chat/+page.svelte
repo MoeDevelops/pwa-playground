@@ -17,7 +17,7 @@
     }
 
     const netChats: Chat[] = await result.json()
-    chats.push(...netChats)
+    chats = netChats
   }
 
   async function createChat() {
