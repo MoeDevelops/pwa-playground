@@ -52,8 +52,8 @@
 <div>
   {#each chats as chat (chat.id)}
     <a href="/chat/view?id={chat.id}">
-      <div>
-        {chat.id}
+      <div class="mx-1 my-2 rounded-2xl border-2 p-2">
+        {chat.username1} & {chat.username2}
       </div>
     </a>
   {/each}
