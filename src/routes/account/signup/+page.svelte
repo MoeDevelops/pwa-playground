@@ -27,13 +27,13 @@
 <form class="flex flex-col items-center justify-center">
   <input
     class="m-1 border-2 bg-white p-1 text-lg text-black"
-    placeholder="username"
+    placeholder="Username"
     bind:value={username}
   />
   <input
     class="m-1 border-2 bg-white p-1 text-lg text-black"
     type="password"
-    placeholder="password"
+    placeholder="Password"
     bind:value={password}
   />
   <button class="m-1 rounded-2xl border-2 p-1 text-lg" onclick={signup}>Sign up</button>
