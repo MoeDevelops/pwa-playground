@@ -46,7 +46,9 @@
     placeholder="Username"
     bind:value={username}
   />
-  <button class="m-1 rounded-2xl border-2 p-1 text-lg" onclick={createChat}>New chat</button>
+  <button class="m-1 cursor-pointer rounded-2xl border-2 p-1 text-lg" onclick={createChat}
+    >New chat</button
+  >
 </form>
 
 <div>

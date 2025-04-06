@@ -36,5 +36,7 @@
     placeholder="Password"
     bind:value={password}
   />
-  <button class="m-1 rounded-2xl border-2 p-1 text-lg" onclick={signup}>Sign up</button>
+  <button class="m-1 cursor-pointer rounded-2xl border-2 p-1 text-lg" onclick={signup}
+    >Sign up</button
+  >
 </form>

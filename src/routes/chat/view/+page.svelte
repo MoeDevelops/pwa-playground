@@ -69,5 +69,7 @@
     bind:value={message}
     onkeydown={(e) => e.key === "Enter" && sendMessage()}
   />
-  <button class="m-1 rounded-2xl border-2 p-1 text-lg" onclick={sendMessage}>Send</button>
+  <button class="m-1 cursor-pointer rounded-2xl border-2 p-1 text-lg" onclick={sendMessage}
+    >Send</button
+  >
 </div>
