@@ -33,7 +33,7 @@ jobs:
         run: |
           export VERSION=$(sed 's/^.//' <<< ${{github.event.release.tag_name}})
           export REPO=$(sed 's/\(.*\)/\L\1/' <<< $GITHUB_REPOSITORY)
-          docker build . -t ghcr.io/$REPO:latest -t ghcr.io/$REPO:$VERSION
+          docker buildx build . --platform linux/amd64,linux/arm64 -t ghcr.io/$REPO:latest -t ghcr.io/$REPO:$VERSION
           docker push ghcr.io/$REPO:latest
           docker push ghcr.io/$REPO:$VERSION
 
@@ -42,6 +42,6 @@ jobs:
         run: |
           export TIME=$(date +%s)
           export REPO=$(sed 's/\(.*\)/\L\1/' <<< $GITHUB_REPOSITORY)
-          docker build . -t ghcr.io/$REPO:main -t ghcr.io/$REPO:$TIME
+          docker buildx build . --platform linux/amd64,linux/arm64 -t ghcr.io/$REPO:main -t ghcr.io/$REPO:$TIME
           docker push ghcr.io/$REPO:main
           docker push ghcr.io/$REPO:$TIME
