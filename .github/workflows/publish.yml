@@ -18,12 +18,16 @@ jobs:
       packages: write
       contents: read
     steps:
-      - name: Get tag info
+      - name: Get Tag Info
         id: info
         run: |
           echo "repo=$(sed 's/\(.*\)/\L\1/' <<< $GITHUB_REPOSITORY)" >> $GITHUB_OUTPUT
-          echo "version=$(sed 's/^.//' <<< ${{github.event.release.tag_name}})" >> $GITHUB_OUTPUT
           echo "time=$(date +%s)" >> $GITHUB_OUTPUT
+
+      - name: Get Version
+        id: version
+        run: |
+          echo "version=$(sed 's/^.//' <<< ${{ github.event.release.tag_name }})" >> $GITHUB_OUTPUT
 
       - name: Check-out
         uses: actions/checkout@v4
@@ -47,7 +51,7 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/${{ steps.info.outputs.repo }}:latest,ghcr.io/${{ steps.info.outputs.repo }}:${{ steps.info.outputs.version }}
+          tags: ghcr.io/${{ steps.info.outputs.repo }}:latest,ghcr.io/${{ steps.info.outputs.repo }}:${{ steps.version.outputs.version }}
 
       - name: Build and push
         if: github.event_name == 'push'
