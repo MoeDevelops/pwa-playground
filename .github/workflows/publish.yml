@@ -18,6 +18,13 @@ jobs:
       packages: write
       contents: read
     steps:
+      - name: Get tag info
+        id: info
+        run: |
+          echo "repo=$(sed 's/\(.*\)/\L\1/' <<< $GITHUB_REPOSITORY)" >> $GITHUB_OUTPUT
+          echo "version=$(sed 's/^.//' <<< ${{github.event.release.tag_name}})" >> $GITHUB_OUTPUT
+          echo "time=$(date +%s)" >> $GITHUB_OUTPUT
+
       - name: Check-out
         uses: actions/checkout@v4
 
@@ -28,20 +35,24 @@ jobs:
           username: ${{github.actor}}
           password: ${{secrets.GITHUB_TOKEN}}
 
-      - name: Build & publish image
-        if: github.event_name == 'release'
-        run: |
-          export VERSION=$(sed 's/^.//' <<< ${{github.event.release.tag_name}})
-          export REPO=$(sed 's/\(.*\)/\L\1/' <<< $GITHUB_REPOSITORY)
-          docker buildx build . --platform linux/amd64,linux/arm64 -t ghcr.io/$REPO:latest -t ghcr.io/$REPO:$VERSION
-          docker push ghcr.io/$REPO:latest
-          docker push ghcr.io/$REPO:$VERSION
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
 
-      - name: Build & publish image
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push
+        if: github.event_name == 'release'
+        uses: docker/build-push-action@v6
+        with:
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ghcr.io/${{ steps.info.outputs.repo }}:latest,ghcr.io/${{ steps.info.outputs.repo }}:${{ steps.info.outputs.version }}
+
+      - name: Build and push
         if: github.event_name == 'push'
-        run: |
-          export TIME=$(date +%s)
-          export REPO=$(sed 's/\(.*\)/\L\1/' <<< $GITHUB_REPOSITORY)
-          docker buildx build . --platform linux/amd64,linux/arm64 -t ghcr.io/$REPO:main -t ghcr.io/$REPO:$TIME
-          docker push ghcr.io/$REPO:main
-          docker push ghcr.io/$REPO:$TIME
+        uses: docker/build-push-action@v6
+        with:
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ghcr.io/${{ steps.info.outputs.repo }}:main,ghcr.io/${{ steps.info.outputs.repo }}:${{ steps.info.outcome.time }}
