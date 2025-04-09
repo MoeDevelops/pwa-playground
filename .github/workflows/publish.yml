@@ -57,4 +57,4 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/${{ steps.info.outputs.repo }}:main,ghcr.io/${{ steps.info.outputs.repo }}:${{ steps.info.outcome.time }}
+          tags: ghcr.io/${{ steps.info.outputs.repo }}:main,ghcr.io/${{ steps.info.outputs.repo }}:${{ steps.info.outputs.time }}
