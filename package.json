@@ -30,7 +30,7 @@
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "drizzle-kit": "^0.30.6",
     "eslint": "^9.24.0",
-    "eslint-config-prettier": "^10.0.1",
+    "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-svelte": "^3.5.1",
     "globals": "^16.0.0",
     "prettier": "^3.5.3",
