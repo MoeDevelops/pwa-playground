@@ -21,7 +21,7 @@ jobs:
           export RAWVERSION=${{ github.event.release.tag_name }}
           if [ $RAWVERSION = "" ]; then RAWVERSION="v0.0.0"; fi
           echo "version=$(sed 's/^.//' <<< $RAWVERSION)" >> $GITHUB_OUTPUT
-          echo "repo=$(sed 's/\(.*\)/\L\1/' <<< $GITHUB_REPOSITORY)" >> $GITHUB_OUTPUT
+          echo "repo=ghcr.io/$(sed 's/\(.*\)/\L\1/' <<< $GITHUB_REPOSITORY)-client" >> $GITHUB_OUTPUT
           echo "time=$(date +%s)" >> $GITHUB_OUTPUT
 
       - name: Check-out
@@ -46,7 +46,7 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/${{ steps.info.outputs.repo }}:latest,ghcr.io/${{ steps.info.outputs.repo }}:${{ steps.info.outputs.version }}
+          tags: ${{ steps.info.outputs.repo }}:latest,${{ steps.info.outputs.repo }}:${{ steps.info.outputs.version }}
 
       - name: Build and push
         if: github.event_name == 'push'
@@ -54,4 +54,4 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/${{ steps.info.outputs.repo }}:main,ghcr.io/${{ steps.info.outputs.repo }}:${{ steps.info.outputs.time }}
+          tags: ${{ steps.info.outputs.repo }}:main,${{ steps.info.outputs.repo }}:${{ steps.info.outputs.time }}
