@@ -47,7 +47,7 @@
     "workbox-precaching": "^7.3.0"
   },
   "dependencies": {
-    "@libsql/client": "^0.15.2",
+    "@libsql/client": "^0.15.3",
     "drizzle-orm": "^0.41.0"
   }
 }
