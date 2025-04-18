@@ -1,0 +1,33 @@
+name: test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check-out
+        uses: actions/checkout@v4
+
+      - name: Use Gleam
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: "27.3.2"
+          gleam-version: "1.10.0"
+          rebar3-version: "3"
+
+      - name: Install dependencies
+        run: gleam deps download
+
+      - name: Build project
+        run: gleam deps download
+
+      - name: Lint source files
+        run: gleam format --check src test
+
+      - name: Test project
+        run: gleam test
