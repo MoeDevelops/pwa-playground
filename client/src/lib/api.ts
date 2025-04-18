@@ -1,13 +1,12 @@
 import { type Result, err, ok } from "neverthrow"
 import { browser, dev } from "$app/environment"
-import { page } from "$app/state"
 import type { Chat, Message, User } from "$lib"
 
 const baseUrl = (() => {
   if (dev) {
     return "http://0.0.0.0:5001"
   } else if (browser) {
-    return `https://api.${page.url.host}`
+    return `https://api.${document.location.host}`
   } else {
     return ""
   }
