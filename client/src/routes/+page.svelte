@@ -1,6 +1,6 @@
 <script lang="ts">
   import { browser } from "$app/environment"
-  import type { User } from "$lib"
+  import { getAccountSelf } from "$lib/api"
   import InstallButton from "$lib/components/InstallButton.svelte"
 
   let greeting = $state("")
@@ -16,18 +16,18 @@
   }
 
   async function fetchUserData() {
-    try {
-      const response = await fetch("/api/account/self", {})
+    const result = await getAccountSelf()
 
-      if (response.status === 200) {
-        const userData: User = await response.json()
-        localStorage.setItem("username", userData.username)
-      } else {
+    result.match(
+      (user) => {
+        localStorage.setItem("username", user.username)
+      },
+      () => {
         localStorage.removeItem("username")
-      }
-    } finally {
-      setGreeting()
-    }
+      },
+    )
+
+    setGreeting()
   }
 </script>
 

@@ -1,21 +1,6 @@
-import { toBuffer, toString } from "uuid-buffer"
-
 export type User = {
   id: string
   username: string
-}
-
-export type BinUser = {
-  id: Buffer
-  username: string
-}
-
-export function binUserToUser(binUser: BinUser): User {
-  return { ...binUser, id: toString(binUser.id) }
-}
-
-export function userToBinUser(user: User): BinUser {
-  return { ...user, id: toBuffer(user.id) }
 }
 
 export type Chat = {
@@ -29,6 +14,6 @@ export type Chat = {
 export type Message = {
   id: string
   author: string
-  authorName: string
+  author_name: string
   content: string
 }

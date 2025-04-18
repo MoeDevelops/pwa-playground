@@ -1,0 +1,17 @@
+version: 3
+
+silent: true
+
+dotenv: [".env"]
+
+tasks:
+  db_up:
+    cmd: dbmate up
+  db_format:
+    cmd: gleam run -m squeal -- --dialect=postgres --datatypecase=lower --identifiercase=lower --width=4 --expressionwidth=20 --keywordcase=lower
+  db_gen:
+    cmd: gleam run -m squirrel
+  run:
+    cmd: gleam run
+  docker:
+    cmd: docker run --rm -it --link postgres -p 5001:5001 $(docker build . -q)

@@ -1,40 +1,21 @@
 <script lang="ts">
   import { browser } from "$app/environment"
   import type { Chat } from "$lib"
+  import { getChats, postChat } from "$lib/api"
 
   let username = $state("")
   let chats: Chat[] = $state([])
 
-  if (browser) getChats()
+  if (browser) fetchChats()
 
-  async function getChats() {
-    const result = await fetch("/api/chat/all", {
-      method: "GET",
-    })
-
-    if (result.status !== 200) {
-      return
-    }
-
-    const netChats: Chat[] = await result.json()
-    chats = netChats
+  async function fetchChats() {
+    const result = await getChats()
+    chats = result.unwrapOr([])
   }
 
   async function createChat() {
-    const result = await fetch("/api/chat", {
-      method: "POST",
-      body: JSON.stringify({
-        username: username,
-      }),
-    })
-
-    if (result.status !== 201) {
-      alert(await result.text())
-      return
-    }
-
-    const chat: Chat = await result.json()
-    chats.push(chat)
+    const result = await postChat(username)
+    result.match((c) => chats.push(c), alert)
   }
 </script>
 

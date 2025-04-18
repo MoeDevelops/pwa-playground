@@ -1,26 +1,17 @@
 <script lang="ts">
   import { goto } from "$app/navigation"
+  import { postLogin } from "$lib/api"
 
   let username = $state("")
   let password = $state("")
 
   async function login() {
-    const result = await fetch("/api/account/login", {
-      method: "POST",
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
-    })
+    const result = await postLogin(username, password)
 
-    if (result.status !== 200) {
-      alert(await result.text())
-      return
-    }
-
-    localStorage.setItem("username", username)
-
-    goto("/")
+    result.match(() => {
+      localStorage.setItem("username", username)
+      goto("/")
+    }, alert)
   }
 </script>
 

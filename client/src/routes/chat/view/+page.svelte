@@ -1,7 +1,8 @@
 <script lang="ts">
   import { browser } from "$app/environment"
   import { page } from "$app/state"
-  import type { Message, User } from "$lib"
+  import type { Message } from "$lib"
+  import { getMessages, postMessage } from "$lib/api"
 
   let messages: Message[] = $state([])
   let id: string | null = null
@@ -16,37 +17,19 @@
   async function fetchMessages() {
     if (!id) return
 
-    const result = await fetch(`/api/chat/messages?id=${id}`)
+    const result = await getMessages(id)
 
-    if (result.status !== 200) {
-      alert(await result.text())
-      return
-    }
-
-    const netMessages: Message[] = await result.json()
-
-    messages = netMessages
+    result.match((m) => (messages = m), alert)
   }
 
   async function sendMessage() {
     if (!id) return
 
-    const result = await fetch("/api/message", {
-      method: "POST",
-      body: JSON.stringify({
-        chat: id,
-        message: message,
-      }),
-    })
-
-    if (result.status !== 201) {
-      alert(await result.text())
-      return
-    }
+    const result = await postMessage(id, message)
 
     message = ""
-    const resultMessage: Message = await result.json()
-    messages.push(resultMessage)
+
+    result.match((m) => messages.push(m), alert)
   }
 </script>
 
@@ -54,7 +37,7 @@
   {#each messages as message (message.id)}
     <div>
       <div class="font-bold">
-        {message.authorName}:
+        {message.author_name}:
       </div>
       <div class="text-xl">
         {message.content}
@@ -69,7 +52,7 @@
     bind:value={message}
     onkeydown={(e) => e.key === "Enter" && sendMessage()}
   />
-  <button class="m-1 cursor-pointer rounded-2xl border-2 p-1 text-lg" onclick={sendMessage}
-    >Send</button
-  >
+  <button class="m-1 cursor-pointer rounded-2xl border-2 p-1 text-lg" onclick={sendMessage}>
+    Send
+  </button>
 </div>
