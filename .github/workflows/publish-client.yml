@@ -1,12 +1,14 @@
 name: Publish Client
 
 on:
+  push:
+    paths:
+      - "client/**"
+    branches:
+      - main
   release:
     types:
       - published
-  push:
-    branches:
-      - main
 
 jobs:
   publish:

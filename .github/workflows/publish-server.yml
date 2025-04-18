@@ -1,12 +1,14 @@
 name: Publish Server
 
 on:
+  push:
+    paths:
+      - "server/**"
+    branches:
+      - main
   release:
     types:
       - published
-  push:
-    branches:
-      - main
 
 jobs:
   publish:
