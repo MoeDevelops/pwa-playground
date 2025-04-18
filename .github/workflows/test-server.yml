@@ -1,14 +1,21 @@
-name: test
+name: Test Server
 
 on:
   push:
+    paths:
+      - "server/**"
     branches:
       - main
   pull_request:
+    paths:
+      - "server/**"
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
     steps:
       - name: Check-out
         uses: actions/checkout@v4
