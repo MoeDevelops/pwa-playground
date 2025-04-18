@@ -46,7 +46,7 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          file: client/Dockerfile
+          context: client/
           tags: ${{ steps.info.outputs.repo }}:latest,${{ steps.info.outputs.repo }}:${{ steps.info.outputs.version }}
 
       - name: Build and push
@@ -55,5 +55,5 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          file: client/Dockerfile
+          context: client/
           tags: ${{ steps.info.outputs.repo }}:main,${{ steps.info.outputs.repo }}:${{ steps.info.outputs.time }}
