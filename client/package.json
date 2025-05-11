@@ -27,7 +27,7 @@
     "@tailwindcss/vite": "^4.1.6",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "eslint": "^9.26.0",
-    "eslint-config-prettier": "^10.1.2",
+    "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-svelte": "^3.5.1",
     "globals": "^16.0.0",
     "neverthrow": "^8.2.0",
