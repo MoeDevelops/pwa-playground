@@ -2,8 +2,6 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "client/"
-    assignees:
-      - "MoeDevelops"
     schedule:
       interval: "weekly"
       timezone: "Europe/Berlin"
@@ -12,8 +10,6 @@ updates:
     open-pull-requests-limit: 20
   - package-ecosystem: "github-actions"
     directory: "/"
-    assignees:
-      - "MoeDevelops"
     schedule:
       interval: "weekly"
       timezone: "Europe/Berlin"
