@@ -38,7 +38,7 @@
     "svelte-check": "^4.4.6",
     "tailwindcss": "^4.2.2",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.37.0",
+    "typescript-eslint": "^8.58.1",
     "vite": "^7.3.2",
     "workbox-precaching": "^7.4.0"
   }
