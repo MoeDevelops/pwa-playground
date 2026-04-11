@@ -1,5 +1,6 @@
 <script lang="ts">
   import { browser } from "$app/environment"
+  import { resolve } from "$app/paths"
   import type { Chat } from "$lib"
   import { getChats, postChat } from "$lib/api"
 
@@ -34,7 +35,7 @@
 
 <div>
   {#each chats as chat (chat.id)}
-    <a href="/chat/view?id={chat.id}">
+    <a href={resolve("/chat/view?id={chat.id}")}>
       <div class="mx-1 my-2 rounded-2xl border-2 p-2">
         {chat.username1} & {chat.username2}
       </div>

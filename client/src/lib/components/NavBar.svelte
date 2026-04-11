@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Home, Mail, Search, User } from "@lucide/svelte"
+  import { resolve } from "$app/paths"
   import { page } from "$app/state"
 
   const elements = [
@@ -17,7 +18,7 @@
 <nav class="my-1 flex flex-row justify-around">
   {#each elements as element (element.link)}
     <a
-      href={element.link}
+      href={resolve(element.link)}
       class="flex flex-col items-center {isActive(element) ? 'font-extrabold' : ''}"
     >
       <svelte:component this={element.icon} class="" />

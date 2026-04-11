@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation"
+  import { resolve } from "$app/paths"
   import { postLogin } from "$lib/api"
 
   let username = $state("")
@@ -10,7 +11,7 @@
 
     result.match(() => {
       localStorage.setItem("username", username)
-      goto("/")
+      goto(resolve("/"))
     }, alert)
   }
 </script>
