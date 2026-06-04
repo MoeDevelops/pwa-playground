@@ -1,6 +1,6 @@
-import { type Result, err, ok } from "neverthrow"
 import { browser, dev } from "$app/environment"
 import type { Chat, Message, User } from "$lib"
+import { err, ok, type Result } from "neverthrow"
 
 const baseUrl = (() => {
   if (dev) {
